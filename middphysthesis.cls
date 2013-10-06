@@ -35,6 +35,10 @@
 % 	* The 'exam' Document Class by Philip Hirschhorn
 % 		* http://www-math.mit.edu/~psh/
 %
+% My sincerest thanks to the authors above for laying the groundwork for this
+% project. It has helped immensely and I hope that this latest incarnation of
+% a Thesis document class will aid in the preparation of many theses to come.
+%
 
 %%% Nate Beatty
 %%% nate.beatty@gmail.com
@@ -42,10 +46,10 @@
 
 \def\fileversion{0.1.0}
 \def\filedate{2013/10/06}
+\def\fileauthor{Nate Beatty}
 
-\NeedsTexFormat{LaTeX2e}
-\ProvidesClass{middphysthesis}[\filedate\space Version \fileversion\space by
-  Nate Beatty]
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{middphysthesis}[\filedate\space Version \fileversion\space by \fileauthor]
 
 %                         ***********************
 %                         ** REQUIRED PACKAGES **
@@ -61,11 +65,11 @@
 %                         *****************
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
-\ProcessOptions
+\ProcessOptions\relax
 
 \LoadClass[12pt]{report}
 
-\headheight=15pt
+% \headheight=12pt
 
 \setlength{\textwidth}{\paperwidth}
 \addtolength{\textwidth}{-2in}
@@ -83,3 +87,9 @@
 
 \setlength{\marginparwidth}{.5in}
 \setlength{\marginparsep}{5pt}
+
+\endinput
+%%
+%%
+%% End of file `middphysthesis.cls`.
+
