@@ -44,6 +44,10 @@
 %%% nate.beatty@gmail.com
 %%% http://natebeatty.com
 
+%                         ***********************
+%                         ** CLASS DEFINITIONS **
+%                         ***********************
+
 \def\fileversion{0.1.0}
 \def\filedate{2013/10/06}
 \def\fileauthor{Nate Beatty}
@@ -51,25 +55,40 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{middphysthesis}[\filedate\space Version \fileversion\space by \fileauthor]
 
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
+\ProcessOptions\relax
+
+\LoadClass[12pt]{report}
+
+%--------------------------------------------------------------------
+
 %                         ***********************
 %                         ** REQUIRED PACKAGES **
 %                         ***********************
 
-\RequirePackage{ifthen}
+\RequirePackage{etoolbox}
 \RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\RequirePackage[super]{natbib}
+\RequirePackage{setspace}
+\RequirePackage{tabularx}
+
+\RequirePackage{lipsum}
+
+%% Draft Option
+% \newbool{isDraft}%
+% \DeclareOption{draft}{
+% 	\booltrue{isDraft}
+% }
+% \DeclareOption{print}{
+% 	\boolfalse{isDraft}
+% }
 
 %--------------------------------------------------------------------
 
 %                         *****************
 %                         ** PAGE LAYOUT **
 %                         *****************
-
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
-\ProcessOptions\relax
-
-\LoadClass[12pt]{report}
-
-% \headheight=12pt
 
 \setlength{\textwidth}{\paperwidth}
 \addtolength{\textwidth}{-2in}
@@ -87,6 +106,26 @@
 
 \setlength{\marginparwidth}{.5in}
 \setlength{\marginparsep}{5pt}
+
+%--------------------------------------------------------------------
+
+%                         ****************
+%                         ** FORMATTING **
+%                         ****************
+
+\onehalfspacing
+% \doublespacing
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+
+%--------------------------------------------------------------------
+
+%                         *********************
+%                         ** CUSTOM COMMANDS **
+%                         *********************
+
+%--------------------------------------------------------------------
 
 \endinput
 %%
