@@ -68,21 +68,30 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{graphicx}
+\RequirePackage{setspace}
+
+\RequirePackage{fancyhdr}
+
 \RequirePackage{hyperref}
 \RequirePackage[super]{natbib}
-\RequirePackage{setspace}
+\RequirePackage[toc,page]{appendix}
+
+\RequirePackage{braket}
+
+\RequirePackage{amsmath}
 \RequirePackage{tabularx}
+\RequirePackage{longtable}
+\RequirePackage{colortbl}
+
+\RequirePackage{caption}
+\RequirePackage{subcaption}
 
 \RequirePackage{lipsum}
 
-%% Draft Option
-% \newbool{isDraft}%
-% \DeclareOption{draft}{
-% 	\booltrue{isDraft}
-% }
-% \DeclareOption{print}{
-% 	\boolfalse{isDraft}
-% }
+\RequirePackage{listings}
+\RequirePackage{xcolor}
+
+\RequirePackage{xparse}
 
 %--------------------------------------------------------------------
 
@@ -113,17 +122,99 @@
 %                         ** FORMATTING **
 %                         ****************
 
-\onehalfspacing
-% \doublespacing
+\doublespacing
 
-\renewcommand{\thechapter}{\Roman{chapter}}
-\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
+% Enumeration
+\renewcommand{\thechapter}{\Roman{chapter}} % Sections in roman numerals
+\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}} % Include chapter numeral in section number
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}} % Use symbols for footnotes b/c numbers are citations
+
+% Syntax Highlighting
+\lstloadlanguages{[5.2]Mathematica}
+\lstdefinestyle{customM}{
+  language=[5.2]Mathematica,
+  breakindent=40pt,
+  breaklines,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange}
+}
+
+% Headers and Footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage} % Number the pages
+\renewcommand{\headrulewidth}{0pt} % Get rid of the ugly ruled line under the header
+
+\renewcommand{\subsectionmark}[1]{ % New dfn to determine if we are in a section or (sub)section
+  \ifsubsectioninheader
+    \def\subsectiontitle{: #1}%
+  \else
+    \def\subsectiontitle{}%
+  \fi}
+\newif\ifsubsectioninheader
+\def\subsectiontitle{}
+
+% Print the section number and title in the header of the page
+\fancyhead[R]{\nouppercase{\rightmark\ifsubsectioninheader\subsectiontitle\fi}} % 1. sectionname
 
 %--------------------------------------------------------------------
 
 %                         *********************
 %                         ** CUSTOM COMMANDS **
 %                         *********************
+
+% Makes the page for the advisor and committee to sign upon successful
+% completion of the senior project interview or thesis defense. Usage appears
+% below:
+%
+%   \makecommitteepage{Advisor's Name}{Committee 1 Name}[Optional Committee 2 Name]
+%
+\NewDocumentCommand{\makecommitteepage}{m m o}{%
+  \begin{minipage}[t]{.55\textwidth}%
+    \vspace{1in}
+    \hfill Advisor:\\
+    \vspace{\baselineskip}\vspace{1in}
+
+    \hfill Committee:\\
+    \IfNoValueTF{#3}
+      {\vspace{1.5in}}
+      {\vspace{1in}\vspace{3\baselineskip}\vspace{1.5in}}
+
+    \hfill Date Accepted:
+  \end{minipage}\hspace{.05\textwidth}%
+  \begin{minipage}[t]{.35\textwidth}%
+    \vspace{1in}\vspace{\baselineskip}
+    \noindent\rule{\textwidth}{0.4pt}
+    \begin{centering}%
+      {#1}
+    \end{centering}
+    \vspace{1in}\vspace{\baselineskip}
+
+    \noindent\rule{\textwidth}{0.4pt}
+    \begin{centering}%
+      {#2}
+    \end{centering}
+    \IfNoValueTF{#3}
+      {\vspace{1.5in}}
+      {\vspace{1in}\vspace{\baselineskip}
+
+        \noindent\rule{\textwidth}{0.4pt}
+        \begin{centering}%
+          {#3}
+        \end{centering}
+        \vspace{1.5in}
+      }
+
+    \noindent\rule{0.75\textwidth}{0.4pt}
+  \end{minipage}
+}
 
 %--------------------------------------------------------------------
 
