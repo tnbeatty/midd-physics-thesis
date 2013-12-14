@@ -66,32 +66,31 @@
 %                         ** REQUIRED PACKAGES **
 %                         ***********************
 
-\RequirePackage{etoolbox}
-\RequirePackage{graphicx}
-\RequirePackage{setspace}
+\RequirePackage{graphicx} % Document formatting
+\RequirePackage{setspace} % Document formatting
 
 \RequirePackage{fancyhdr}
 
-\RequirePackage{hyperref}
+\RequirePackage{hyperref} % PDF links btwn TOC and chapters / sections
 \RequirePackage[super]{natbib}
 \RequirePackage[toc,page]{appendix}
 
-\RequirePackage{braket}
+\RequirePackage{braket} % For bra-ket notation
 
 \RequirePackage{amsmath}
-\RequirePackage{tabularx}
-\RequirePackage{longtable}
-\RequirePackage{colortbl}
+\RequirePackage{tabularx} % Fancy table formatting
+\RequirePackage{longtable} % For tables that extend over multiple pages
+\RequirePackage{colortbl} % To color table rows and columns
 
 \RequirePackage{caption}
 \RequirePackage{subcaption}
 
-\RequirePackage{lipsum}
+\RequirePackage{lipsum} % For generating filler text
 
-\RequirePackage{listings}
+\RequirePackage{listings} % For code syntax highlighting
 \RequirePackage{xcolor}
 
-\RequirePackage{xparse}
+\RequirePackage{xparse} % Makes defining custom macros very easy
 
 %--------------------------------------------------------------------
 
