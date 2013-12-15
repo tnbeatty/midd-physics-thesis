@@ -84,6 +84,7 @@
 
 \RequirePackage{caption}
 \RequirePackage{subcaption}
+\RequirePackage[rightcaption]{sidecap}
 
 \RequirePackage{lipsum} % For generating filler text
 
