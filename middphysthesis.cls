@@ -129,6 +129,7 @@
 \renewcommand{\thesection}{\arabic{chapter}.\arabic{section}} % Include chapter numeral in section number
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
 
 \renewcommand{\thefootnote}{\fnsymbol{footnote}} % Use symbols for footnotes b/c numbers are citations
 
@@ -151,6 +152,14 @@
 \fancyhf{}
 \fancyfoot[R]{\thepage} % Number the pages
 \renewcommand{\headrulewidth}{0pt} % Get rid of the ugly ruled line under the header
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{% Redefine plain page style for the first page of new sections
+  \fancyhf{} % clear all header and footer fields
+  \fancyfoot[R]{\thepage} % except the center
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
 
 \renewcommand{\subsectionmark}[1]{ % New dfn to determine if we are in a section or (sub)section
   \ifsubsectioninheader
